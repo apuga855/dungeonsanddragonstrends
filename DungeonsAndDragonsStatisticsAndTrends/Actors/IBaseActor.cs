@@ -17,6 +17,10 @@ namespace Actor
         /// </summary>
         int AC { get; }
         /// <summary>
+        /// Gets the HitPoints of the Actor
+        /// </summary>
+        int HitPoints { get; }
+        /// <summary>
         /// Gets the Strength of the Actor
         /// </summary>
         int Strength { get; }

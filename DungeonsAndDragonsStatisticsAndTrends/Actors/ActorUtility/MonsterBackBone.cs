@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Actor;
 
-namespace Characters
+namespace Actor
 {
-
-    interface IBaseCharacter : IBaseActor
+    class MonsterBackBone : ActorBackBone 
     {
     }
 }

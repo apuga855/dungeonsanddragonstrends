@@ -17,7 +17,7 @@ namespace DiceUtility
             int result = 0;
             foreach(int die in damageDice)
             {
-                result += _excecuteDice.Next(die);
+                result += _excecuteDice.Next(1, die + 1);//The random number generator is non inclusive, have to add 1
             }
             return result;
         }

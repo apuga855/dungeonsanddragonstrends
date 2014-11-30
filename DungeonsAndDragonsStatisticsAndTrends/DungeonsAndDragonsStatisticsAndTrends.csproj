@@ -41,11 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character\ActorUtility\ActorUtility.cs" />
-    <Compile Include="Character\Heroes\IBaseCharacter.cs" />
-    <Compile Include="Character\IBaseActor.cs" />
-    <Compile Include="Character\Monsters\Goblin.cs" />
-    <Compile Include="Character\Monsters\IBaseMonster.cs" />
+    <Compile Include="Actors\ActorUtility\ActorBackBone.cs" />
+    <Compile Include="Actors\ActorUtility\CharacterBackBone.cs" />
+    <Compile Include="Actors\ActorUtility\MonsterBackBone.cs" />
+    <Compile Include="Actors\Heroes\IBaseCharacter.cs" />
+    <Compile Include="Actors\IBaseActor.cs" />
+    <Compile Include="Actors\Monsters\Goblin.cs" />
+    <Compile Include="Actors\Monsters\IBaseMonster.cs" />
     <Compile Include="DiceUtilities\CalculateDamage.cs" />
     <Compile Include="DiceUtilities\DiceTypes.cs" />
     <Compile Include="Money\MoneyTypes.cs" />

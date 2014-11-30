@@ -7,15 +7,26 @@ using System.Threading.Tasks;
 namespace Actor
 {
 
-    class ActorUtility
+    class ActorBackBone : IBaseActor 
     {
-            
-        public static void CalculateMods( ref IBaseActor x)
+        /// <summary>
+        /// Calculate modifiers for each major attribute
+        /// </summary>
+        public void CalculateMods( )
         {
-
+            StrengthMod = ConvertToMod(Strength);
+            DexterityMod = ConvertToMod(Dexterity);
+            ConstitutionMod = ConvertToMod(Constitution);
+            IntelligenceMod= ConvertToMod(Intelligence);
+            WisdomMod= ConvertToMod(Wisdom);
+            CharismaMod = ConvertToMod(Charisma);
         }
-
-        private static int ConvertToMod(int baseState)
+        /// <summary>
+        /// Converts the major attribute to a modifier
+        /// </summary>
+        /// <param name="baseState"></param>
+        /// <returns>The mod based on the major attribute</returns>
+        private int ConvertToMod(int baseState)
         {
             int mod = 0;
             switch(baseState)
@@ -85,7 +96,37 @@ namespace Actor
             }
             return mod;
         }
-    
+
+
+        public string Name{ get; protected set;}
+
+        public int AC { get; protected set; }
+
+        public int Strength { get; protected set; }
+
+        public int Dexterity { get; protected set; }
+
+        public int Constitution { get; protected set; }
+
+        public int Intelligence { get; protected set; }
+
+        public int Wisdom { get; protected set; }
+
+        public int Charisma { get; protected set; }
+
+        public int StrengthMod { get; protected set; }
+
+        public int DexterityMod { get; protected set; }
+
+        public int ConstitutionMod { get; protected set; }
+
+        public int IntelligenceMod { get; protected set; }
+
+        public int WisdomMod { get; protected set; }
+
+        public int CharismaMod { get; protected set; }
+
+        public int HitPoints { get; protected set; }
     }
 
 
