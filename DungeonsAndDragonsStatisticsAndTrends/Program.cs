@@ -17,6 +17,7 @@ namespace DungeonsAndDragonsStatisticsAndTrends
             LongTermTrend trend = new LongTermTrend(100000, attacker, target);
             LongTermReport report = trend.CalculateLongTermTrend();
             report.ReportPrint();
+            Console.ReadLine();
 
             
         }

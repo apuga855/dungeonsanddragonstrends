@@ -76,15 +76,15 @@ namespace MathUtilities
         public void ReportPrint()
         {
             Console.WriteLine("Report*******************");
-            Console.WriteLine("In %d trials this were the results", Trials);
-            Console.WriteLine("Damage : %d", Damage);
-            Console.WriteLine("Average Damage : %d", AverageDamage);
-            Console.WriteLine("Crits : %d", Crits);
-            Console.WriteLine("Average Crits : %d", AverageCrits);
-            Console.WriteLine("Hits : %d", Hits);
-            Console.WriteLine("Average Hits : %d", AverageHits);
-            Console.WriteLine("Variance : %d", Variance);
-            Console.WriteLine("Standard Deviation : %d", StandardDeviation);
+            Console.WriteLine("In {0} trials this were the results", Trials);
+            Console.WriteLine("Damage : {0}", Damage);
+            Console.WriteLine("Average Damage : {0}", AverageDamage);
+            Console.WriteLine("Crits : {0}", Crits);
+            Console.WriteLine("Average Crits : {0}", AverageCrits);
+            Console.WriteLine("Hits : {0}", Hits);
+            Console.WriteLine("Average Hits : {0}", AverageHits);
+            Console.WriteLine("Variance : {0}", Variance);
+            Console.WriteLine("Standard Deviation : {0}", StandardDeviation);
 
         }
     }

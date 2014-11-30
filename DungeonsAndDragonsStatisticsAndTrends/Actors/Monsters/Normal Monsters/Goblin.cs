@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Actor;
+using Weapons;
 
 namespace Monster
 {
@@ -49,6 +50,7 @@ namespace Monster
             Charisma = 8;
             Level = ActorLevel.Level_LessThanOne;
             PassivePerception = 9;
+            Weapon = new Club();
             CalculateMods();
             CalculateProficiency();
         }
