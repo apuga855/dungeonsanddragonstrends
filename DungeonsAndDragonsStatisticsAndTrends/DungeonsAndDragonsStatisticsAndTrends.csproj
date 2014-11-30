@@ -42,14 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actors\ActorUtility\ActorBackBone.cs" />
+    <Compile Include="Actors\ActorUtility\AttakResults.cs" />
     <Compile Include="Actors\ActorUtility\CharacterBackBone.cs" />
     <Compile Include="Actors\ActorUtility\MonsterBackBone.cs" />
     <Compile Include="Actors\Heroes\IBaseCharacter.cs" />
     <Compile Include="Actors\IBaseActor.cs" />
-    <Compile Include="Actors\Monsters\Goblin.cs" />
+    <Compile Include="Actors\Monsters\Normal Monsters\Goblin.cs" />
     <Compile Include="Actors\Monsters\IBaseMonster.cs" />
     <Compile Include="DiceUtilities\CalculateDamage.cs" />
     <Compile Include="DiceUtilities\DiceTypes.cs" />
+    <Compile Include="Math Utilities\LongTermReport.cs" />
+    <Compile Include="Math Utilities\LongTermTrend.cs" />
     <Compile Include="Money\MoneyTypes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

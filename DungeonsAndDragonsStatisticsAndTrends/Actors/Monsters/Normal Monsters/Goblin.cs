@@ -16,7 +16,7 @@ namespace Monster
         /// <summary>
         /// Default constructor initializes a goblin with the maximum possible health
         /// </summary>
-        Goblin()
+        public Goblin()
         {
             HitPoints = 7;
             CommonProperties();
@@ -25,7 +25,7 @@ namespace Monster
         /// Constructor that randomizes a goblin's health up to its maximum health
         /// </summary>
         /// <param name="Lowerbound"></param>
-        Goblin(int Lowerbound)
+        public Goblin(int Lowerbound)
         {
             Random rnd = new Random();
             HitPoints = rnd.Next(Lowerbound, 8);

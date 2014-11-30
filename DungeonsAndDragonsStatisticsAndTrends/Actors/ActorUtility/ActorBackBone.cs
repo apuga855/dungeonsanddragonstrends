@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Weapons;
+using DiceUtility;
 
 namespace Actor
 {
@@ -207,16 +208,43 @@ namespace Actor
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
-        protected bool Attack(ActorBackBone target)
+        public AttackResults Attack(ActorBackBone target)
         {
+            AttackResults results = new AttackResults();
             int attackMod = GetAttackMod();
             Random roll = new Random();
-            int attackAttempt = roll.Next(1, 21) + attackMod + Proficiency;
-            if(attackAttempt >= target.AC)
+            int nakedRoll = roll.Next(1, 21);
+            int attackAttempt = nakedRoll + attackMod + Proficiency;
+            if(attackAttempt >= target.AC || nakedRoll == 20)
             {
-                return true;
+                results.OverHit = attackAttempt - AC;
+                results.Hit = true;
+                results.TotalDamage = CalculateWeaponAttackDamage();
+                if(nakedRoll == 20)
+                {
+                    results.Crit = true;
+                }
             }
-            return false;
+            else
+            {
+                results.OverHit = null;
+                results.TotalDamage = 0;
+                results.Hit = false;
+                results.Crit = false;
+            }
+
+            return results;
+        }
+
+        private int CalculateWeaponAttackDamage()
+        {
+            Random roll = new Random();
+            int damage = 0;
+            foreach(Dice die in Weapon.Damage)
+            {
+                damage += roll.Next(1, ((int)die) + 1);
+            }
+            return damage;
         }
 
         protected int GetAttackMod()
