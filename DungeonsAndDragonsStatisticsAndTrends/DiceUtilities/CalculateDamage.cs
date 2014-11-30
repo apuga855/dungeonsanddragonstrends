@@ -22,7 +22,7 @@ namespace DiceUtility
             return result;
         }
 
-        public static int AttackAttempt(IBaseActor attacker)
+        public static int AttackAttempt(ActorBackBone attacker)
         {
 
         }

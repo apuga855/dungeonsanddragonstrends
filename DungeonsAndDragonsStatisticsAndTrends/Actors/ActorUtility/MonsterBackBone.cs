@@ -8,5 +8,9 @@ namespace Actor
 {
     class MonsterBackBone : ActorBackBone 
     {
+        /// <summary>
+        /// Gets or Sets the monster difficulty
+        /// </summary>
+        public double Challange { get; protected set; }
     }
 }

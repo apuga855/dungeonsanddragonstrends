@@ -68,6 +68,9 @@ namespace Actor
         /// Gets the CharismaMod of the Actor
         /// </summary>
         int CharismaMod { get; }
-
+        /// <summary>
+        /// Gets the PassivePerceptions
+        /// </summary>
+        public int PassivePerception { get; }
     }
 }
