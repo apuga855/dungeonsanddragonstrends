@@ -21,15 +21,5 @@ namespace DiceUtility
             }
             return result;
         }
-
-        public static int AttackAttempt(ActorBackBone attacker)
-        {
-
-        }
-
-        public static bool CalculateHit(IBaseActor attacker, IBaseActor target)
-        {
-
-        }
     }
 }

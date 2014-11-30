@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Weapons;
 
 namespace Actor
 {
@@ -69,8 +70,12 @@ namespace Actor
         /// </summary>
         int CharismaMod { get; }
         /// <summary>
-        /// Gets the PassivePerceptions
+        /// Gets the PassivePerceptions for the Actor
         /// </summary>
-        public int PassivePerception { get; }
+        int PassivePerception { get; }
+        /// <summary>
+        /// Gets the Weapon for the Actor
+        /// </summary>
+        IBaseWeapon Weapon { get; }
     }
 }

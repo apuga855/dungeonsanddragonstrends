@@ -29,6 +29,16 @@ namespace Weapons
         DualWield,
         TwoHanded
     }
+    /// <summary>
+    /// Enum that determines what attribute
+    /// </summary>
+    public enum AttributeAttack
+    {
+        Strength,
+        Dexterity,
+        StrengthOrDexterity,
+        Unknown
+    }
     #endregion
 
     /// <summary>
@@ -47,25 +57,29 @@ namespace Weapons
         /// </summary>
         IList<KeyValuePair<MoneyType, double>> Cost { get;}
         /// <summary>
-        /// The Weight of the weapon
+        /// Gets Weight of the weapon
         /// </summary>
         double Weight{ get;}
         /// <summary>
-        /// The Damage of the weapons
+        /// Gets Damage of the weapons
         /// </summary>
         IList<Dice> Damage{ get; }
         /// <summary>
-        /// Type of wielding for Weapon
+        /// Gets the type of wielding for the  Weapon
         /// </summary>
         WieldType Style { get;}
         /// <summary>
-        /// Type of weapon damage
+        /// Gets the Type of damage
         /// </summary>
         DamageType TypeOfDamage{ get;}
         /// <summary>
         /// Contains Weapon Properties
         /// </summary>
         WeaponProperties Properties { get; }
+        /// <summary>
+        /// Gets the main attribute for the attack
+        /// </summary>
+        AttributeAttack AttackStat { get; }
 
         #endregion
     }

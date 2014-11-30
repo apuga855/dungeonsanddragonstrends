@@ -11,7 +11,10 @@ namespace Weapons
 {
     class Club : IBaseWeapon
     {
-
+        #region Constructors
+        /// <summary>
+        /// Constructs a club with all its relevant properties
+        /// </summary>
         public Club()
         {
             Name = string.Format("Club");
@@ -22,8 +25,10 @@ namespace Weapons
             Damage.Add(Dice.D4);
             TypeOfDamage = DamageType.Bludgeoning;
             Properties = new WeaponProperties();
-            Properties.Light = true;
+            Properties.LightWeight = true;
+            AttackStat = AttributeAttack.Strength;
         }
+        #endregion
 
 
         public string Name
@@ -63,6 +68,12 @@ namespace Weapons
         }
 
         public WeaponProperties Properties
+        {
+            get;
+            private set;
+        }
+
+        public AttributeAttack AttackStat
         {
             get;
             private set;

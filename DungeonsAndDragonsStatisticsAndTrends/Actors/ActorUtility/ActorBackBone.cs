@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Weapons;
 
 namespace Actor
 {
@@ -11,6 +12,7 @@ namespace Actor
     /// </summary>
     public enum ActorLevel
     {
+        Level_LessThanOne,
         Level_1,
         Level_2,
         Level_3,
@@ -40,36 +42,38 @@ namespace Actor
         Level_27,
         Level_28,
         Level_29,
-        Level_30
+        Level_30,
+        Unknown
     }
 
     class ActorBackBone : IBaseActor
     {
         #region Constructors
-        /// <summary>
-        /// Calculate modifiers for each major attribute
-        /// </summary>
-        public void CalculateMods( )
-        {
-            StrengthMod = ConvertToMod(Strength);
-            DexterityMod = ConvertToMod(Dexterity);
-            ConstitutionMod = ConvertToMod(Constitution);
-            IntelligenceMod= ConvertToMod(Intelligence);
-            WisdomMod= ConvertToMod(Wisdom);
-            CharismaMod = ConvertToMod(Charisma);
-        }
+
         #endregion
 
         #region Private Methods
         /// <summary>
+        /// Calculate modifiers for each major attribute
+        /// </summary>
+        protected void CalculateMods()
+        {
+            StrengthMod = ConvertToMod(Strength);
+            DexterityMod = ConvertToMod(Dexterity);
+            ConstitutionMod = ConvertToMod(Constitution);
+            IntelligenceMod = ConvertToMod(Intelligence);
+            WisdomMod = ConvertToMod(Wisdom);
+            CharismaMod = ConvertToMod(Charisma);
+        }
+        /// <summary>
         /// Converts the major attribute to a modifier
         /// </summary>
-        /// <param name="baseState"></param>
+        /// <param name="baseStat"></param>
         /// <returns>The mod based on the major attribute</returns>
-        private int ConvertToMod(int baseState)
+        private int ConvertToMod(int baseStat)
         {
             int mod = 0;
-            switch(baseState)
+            switch(baseStat)
             {
                 case 1:
                     mod = -5;
@@ -141,10 +145,11 @@ namespace Actor
         /// Calculates proficiency based on ActorLevel
         /// </summary>
         /// <param name="level"></param>
-        private void CalculateProficiency(ActorLevel level)
+        protected void CalculateProficiency()
         {
-            switch (level)
+            switch (Level)
             {
+                case ActorLevel.Level_LessThanOne:
                 case ActorLevel.Level_1:
                 case ActorLevel.Level_2:
                 case ActorLevel.Level_3:
@@ -191,7 +196,43 @@ namespace Actor
                 case ActorLevel.Level_30:
                     Proficiency = 9;
                     break;
+                case ActorLevel.Unknown:
+                    Proficiency = 0;
+                    break;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        protected bool Attack(ActorBackBone target)
+        {
+            int attackMod = GetAttackMod();
+            Random roll = new Random();
+            int attackAttempt = roll.Next(1, 21) + attackMod + Proficiency;
+            if(attackAttempt >= target.AC)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        protected int GetAttackMod()
+        {
+            switch(Weapon.AttackStat)
+            {
+                case AttributeAttack.Dexterity:
+                    return DexterityMod;
+                case AttributeAttack.Strength:
+                    return StrengthMod;
+                case AttributeAttack.StrengthOrDexterity:
+                    return (StrengthMod > DexterityMod) ? StrengthMod : DexterityMod;
+                case AttributeAttack.Unknown:
+                    return 0;
+            }
+            return 0;
         }
         #endregion
 
@@ -267,6 +308,14 @@ namespace Actor
         /// Gets or Sets the PassivePerceptions
         /// </summary>
         public int PassivePerception { get; protected set; }
+        /// <summary>
+        /// Gets or Sets the Character Level
+        /// </summary>
+        public ActorLevel Level { get; protected set; }
+        /// <summary>
+        /// Gets the Weapon for the Actor
+        /// </summary>
+        public IBaseWeapon Weapon { get; protected set; }
         #endregion
     }
 }
