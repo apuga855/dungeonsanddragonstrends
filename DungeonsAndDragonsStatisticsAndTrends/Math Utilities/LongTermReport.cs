@@ -14,19 +14,19 @@ namespace MathUtilities
             set;
         }
 
-        public double AverageDamage
+        public double ExpectedDamage
         {
             get;
             set;
         }
 
-        public double AverageCrits
+        public double ExpectedCrits
         {
             get;
             set;
         }
 
-        public double AverageHits
+        public double ExpectedHits
         {
             get;
             set;
@@ -50,6 +50,17 @@ namespace MathUtilities
             set;
         }
 
+        public double AverageDamage
+        {
+            get;
+            set;
+        }
+
+        public double AverageCritDamage
+        {
+            get;
+            set;
+        }
         public double StandardDeviation
         {
             get;
@@ -66,9 +77,9 @@ namespace MathUtilities
             Damage = 0;
             Trials = 0;
             Crits = 0;
-            AverageDamage = 0;
-            AverageCrits = 0;
-            AverageHits = 0;
+            ExpectedDamage = 0;
+            ExpectedCrits = 0;
+            ExpectedHits = 0;
             StandardDeviation = 0;
             Variance = 0;
         }
@@ -78,11 +89,13 @@ namespace MathUtilities
             Console.WriteLine("Report*******************");
             Console.WriteLine("In {0} trials this were the results", Trials);
             Console.WriteLine("Damage : {0}", Damage);
+            Console.WriteLine("Expected Damage : {0}", ExpectedDamage);
             Console.WriteLine("Average Damage : {0}", AverageDamage);
             Console.WriteLine("Crits : {0}", Crits);
-            Console.WriteLine("Average Crits : {0}", AverageCrits);
+            Console.WriteLine("Expected Crits : {0}", ExpectedCrits);
+            Console.WriteLine("Average Crit Damage : {0}", AverageCritDamage);
             Console.WriteLine("Hits : {0}", Hits);
-            Console.WriteLine("Average Hits : {0}", AverageHits);
+            Console.WriteLine("Average Hits : {0}", ExpectedHits);
             Console.WriteLine("Variance : {0}", Variance);
             Console.WriteLine("Standard Deviation : {0}", StandardDeviation);
 

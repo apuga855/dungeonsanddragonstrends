@@ -210,57 +210,95 @@ namespace Actor
         /// <returns></returns>
         public AttackResults Attack(ActorBackBone target)
         {
-            AttackResults results = new AttackResults();
-            int attackMod = GetAttackMod();
-            Random roll = new Random();
-            int nakedRoll = roll.Next(1, 21);
-            int attackAttempt = nakedRoll + attackMod + Proficiency;
-            if(attackAttempt >= target.AC || nakedRoll == 20)
+            if (WeaponEquipped)
             {
-                results.OverHit = attackAttempt - AC;
-                results.Hit = true;
-                results.TotalDamage = CalculateWeaponAttackDamage();
-                if(nakedRoll == 20)
+                AttackResults results = new AttackResults();
+                int nakedRoll = Roll.Next(1, 21);
+                int attackAttempt = nakedRoll + WeaponMod + Proficiency;
+                if (attackAttempt >= target.AC || nakedRoll == 20)
                 {
-                    results.Crit = true;
+                    results.OverHit = attackAttempt - AC;
+                    results.Hit = true;
+                    if (nakedRoll == 20)
+                    {
+                        results.Crit = true;
+                        results.TotalDamage = CalculateCritWeaponAttackDamage();
+                    }
+                    else
+                    {
+                        results.TotalDamage = CalculateWeaponAttackDamage();
+                    }
                 }
-            }
-            else
-            {
-                results.OverHit = null;
-                results.TotalDamage = 0;
-                results.Hit = false;
-                results.Crit = false;
-            }
+                else
+                {
+                    results.OverHit = null;
+                    results.TotalDamage = 0;
+                    results.Hit = false;
+                    results.Crit = false;
+                }
 
-            return results;
+                return results;
+            }
+            throw new ArgumentException("The weapon was not equipped");
         }
+
+        public AttackResults AttackWithWeapon(IBaseWeapon weapon, ActorBackBone target)
+        {
+            EquipWeapon(weapon);
+            return Attack(target);
+        }
+
+        public void EquipWeapon(IBaseWeapon weapon)
+        {
+            Weapon = weapon;
+            GetAttackMod();
+            WeaponEquipped = true;
+        }
+
 
         private int CalculateWeaponAttackDamage()
         {
             Random roll = new Random();
             int damage = 0;
+
             foreach(Dice die in Weapon.Damage)
             {
-                damage += roll.Next(1, ((int)die) + 1);
+                damage += roll.Next(1, ((int)die) + 1) + WeaponMod;
             }
             return damage;
         }
 
-        protected int GetAttackMod()
+        private int CalculateCritWeaponAttackDamage()
+        {
+            Random roll = new Random();
+            int damage = 0;
+
+            foreach (Dice die in Weapon.Damage)
+            {
+                damage += roll.Next(1, ((int)die) + 1);
+                damage += roll.Next(1, ((int)die) + 1);
+            }
+            damage += WeaponMod; ;
+            return damage;
+        }
+
+        protected void GetAttackMod()
         {
             switch(Weapon.AttackStat)
             {
                 case AttributeAttack.Dexterity:
-                    return DexterityMod;
+                    WeaponMod = DexterityMod;
+                    break;
                 case AttributeAttack.Strength:
-                    return StrengthMod;
+                    WeaponMod = StrengthMod;
+                    break;
                 case AttributeAttack.StrengthOrDexterity:
-                    return (StrengthMod > DexterityMod) ? StrengthMod : DexterityMod;
+                    WeaponMod = (StrengthMod > DexterityMod) ? StrengthMod : DexterityMod;
+                    break;
                 case AttributeAttack.Unknown:
-                    return 0;
+                    WeaponMod = 0;
+                    break;
             }
-            return 0;
         }
         #endregion
 
@@ -341,9 +379,22 @@ namespace Actor
         /// </summary>
         public ActorLevel Level { get; protected set; }
         /// <summary>
-        /// Gets the Weapon for the Actor
+        /// Gets or Sets the Weapon for the Actor
         /// </summary>
         public IBaseWeapon Weapon { get; protected set; }
+        /// <summary>
+        /// Gets or Sets the current WeaponMod
+        /// </summary>
+        public int WeaponMod { get; set; }
+        /// <summary>
+        /// Gets or Sets the Roll for the Actor
+        /// </summary>
+        public Random Roll { get; protected set; }
+        /// <summary>
+        /// Gets or Sets whether or not the actor has a WeaponEquipped
+        /// </summary>
+        public bool WeaponEquipped { get; private set; }
         #endregion
+
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Monster;
 using MathUtilities;
+using Weapons;
 
 namespace DungeonsAndDragonsStatisticsAndTrends
 {
@@ -12,9 +13,11 @@ namespace DungeonsAndDragonsStatisticsAndTrends
     {
         static void Main(string[] args)
         {
+            IBaseWeapon scimitar = new Scimitar();
             Goblin attacker = new Goblin();
             Goblin target = new Goblin();
-            LongTermTrend trend = new LongTermTrend(100000, attacker, target);
+            attacker.EquipWeapon(scimitar);
+            LongTermTrend trend = new LongTermTrend(1000000, attacker, target);
             LongTermReport report = trend.CalculateLongTermTrend();
             report.ReportPrint();
             Console.ReadLine();

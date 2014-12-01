@@ -77,5 +77,17 @@ namespace Actor
         /// Gets the Weapon for the Actor
         /// </summary>
         IBaseWeapon Weapon { get; }
+        /// <summary>
+        /// Gets the current WeaponMod
+        /// </summary>
+        int WeaponMod { get; }
+        /// <summary>
+        /// Gets the Actor's roll
+        /// </summary>
+        Random Roll { get; }
+        /// <summary>
+        /// Gets whether or not the actor has a WeaponEquipped
+        /// </summary>
+        bool WeaponEquipped { get; }
     }
 }

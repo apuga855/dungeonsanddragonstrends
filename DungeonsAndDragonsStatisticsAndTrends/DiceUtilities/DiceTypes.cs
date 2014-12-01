@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DiceUtility
 {
+    /// <summary>
+    /// This enum represents the difference dice a player can roll
+    /// </summary>
     public enum Dice
     {
         D4 = 4,

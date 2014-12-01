@@ -8,24 +8,33 @@ namespace MathUtilities
 {
     class LongTermTrend
     {
+        /// <summary>
+        /// Gets or Sets the ammount of Trials the trends will go for
+        /// </summary>
         public double Trials
         {
             get;
             private set;
         }
-
+        /// <summary>
+        /// Gets or Sets Target who is being attacked
+        /// </summary>
         public ActorBackBone Target
         {
             get;
             set;
         }
-        
+        /// <summary>
+        /// Gets or Sets the Attacker who will be attacking
+        /// </summary>
         public ActorBackBone Attacker
         {
             get;
             set;
         }
-
+        /// <summary>
+        /// Gets or Sets the list of Attacks that happened in the past
+        /// </summary>
         private IList<AttackResults> Attacks
         {
             get;
@@ -51,18 +60,28 @@ namespace MathUtilities
                 report.Damage += current.TotalDamage;
                 report.Crits += (current.Crit) ? 1 : 0;
                 report.Hits += (current.Hit) ? 1 : 0;
+                if(current.Hit)
+                {
+                    report.AverageDamage += current.TotalDamage;
+                }
+                if(current.Crit)
+                {
+                    report.AverageCritDamage += current.TotalDamage;
+                }
                 Attacks.Add(current);
             }
 
             report.Trials = Trials;
-            report.AverageHits = report.Hits / report.Trials;
-            report.AverageCrits = report.Crits / report.Trials;
-            report.AverageDamage = report.Damage / report.Trials;
+            report.ExpectedHits = report.Hits / report.Trials;
+            report.ExpectedCrits = report.Crits / report.Trials;
+            report.ExpectedDamage = report.Damage / report.Trials;
+            report.AverageDamage = report.AverageDamage / report.Hits;
+            report.AverageCritDamage = report.AverageCritDamage / report.Crits;
 
             double currentVariance = 0;
             foreach(AttackResults attack in Attacks)
             {
-                currentVariance = attack.TotalDamage - report.AverageDamage;
+                currentVariance = attack.TotalDamage - report.ExpectedDamage;
                 currentVariance *= currentVariance;
                 report.Variance += currentVariance;
             }
