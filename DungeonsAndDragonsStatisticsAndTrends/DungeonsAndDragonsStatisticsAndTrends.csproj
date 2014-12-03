@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actors\ActorUtility\ActorRandomizer\PlayerRandomizer\IBaseRandomizer.cs" />
     <Compile Include="Actors\ActorUtility\BackBones\ActorBackBone.cs" />
     <Compile Include="Actors\ActorUtility\AttakResults.cs" />
     <Compile Include="Actors\ActorUtility\BackBones\CharacterBackBone.cs" />
@@ -49,6 +50,10 @@
     <Compile Include="Actors\ActorUtility\FeatUtility\FeatCalculations.cs" />
     <Compile Include="Actors\ActorUtility\FeatUtility\IFeats.cs" />
     <Compile Include="Actors\Heroes\IBaseCharacter.cs" />
+    <Compile Include="Actors\Heroes\Races\IBaseRace.cs" />
+    <Compile Include="Actors\Heroes\Races\Normal\Dwarf\BaseDwarf.cs" />
+    <Compile Include="Actors\Heroes\Races\Normal\Dwarf\HillDwarf.cs" />
+    <Compile Include="Actors\Heroes\Races\Normal\Dwarf\MountainDwarf.cs" />
     <Compile Include="Actors\IBaseActor.cs" />
     <Compile Include="Actors\Monsters\Normal Monsters\Goblin.cs" />
     <Compile Include="Actors\Monsters\IBaseMonster.cs" />
@@ -69,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Actors\ActorUtility\ActorRandomizer\MonsterRandomizer\" />
-    <Folder Include="Actors\ActorUtility\ActorRandomizer\PlayerRandomizer\" />
+    <Folder Include="Actors\Heroes\Races\Exotic\" />
     <Folder Include="Actors\Monsters\Legendary Monsters\" />
     <Folder Include="Checker\" />
     <Folder Include="Weapons\Martial\Ranged\" />

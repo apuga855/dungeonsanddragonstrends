@@ -89,6 +89,5 @@ namespace Actor
         /// Gets whether or not the actor has a WeaponEquipped
         /// </summary>
         bool WeaponEquipped { get; }
-        IDictionary<>
     }
 }
