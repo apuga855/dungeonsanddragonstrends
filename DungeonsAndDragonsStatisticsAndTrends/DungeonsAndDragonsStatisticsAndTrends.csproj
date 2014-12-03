@@ -41,10 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actors\ActorUtility\ActorBackBone.cs" />
+    <Compile Include="Actors\ActorUtility\BackBones\ActorBackBone.cs" />
     <Compile Include="Actors\ActorUtility\AttakResults.cs" />
-    <Compile Include="Actors\ActorUtility\CharacterBackBone.cs" />
-    <Compile Include="Actors\ActorUtility\MonsterBackBone.cs" />
+    <Compile Include="Actors\ActorUtility\BackBones\CharacterBackBone.cs" />
+    <Compile Include="Actors\ActorUtility\BackBones\MonsterBackBone.cs" />
+    <Compile Include="Actors\ActorUtility\Feats\Feats.cs" />
     <Compile Include="Actors\Heroes\IBaseCharacter.cs" />
     <Compile Include="Actors\IBaseActor.cs" />
     <Compile Include="Actors\Monsters\Normal Monsters\Goblin.cs" />

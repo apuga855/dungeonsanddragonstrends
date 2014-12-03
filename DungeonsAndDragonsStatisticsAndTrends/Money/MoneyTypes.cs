@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Money
 {
+    /// <summary>
+    /// Represents the Money Type
+    /// </summary>
     public enum MoneyType
     {
         CopperPieces,
