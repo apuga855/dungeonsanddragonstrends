@@ -48,7 +48,7 @@ namespace Monster
             Intelligence = 10;
             Wisdom = 8;
             Charisma = 8;
-            Level = ActorLevel.Level_LessThanOne;
+            Level = ActorLevel.Level_OneFourth;
             PassivePerception = 9;
             CalculateMods();
             CalculateProficiency();

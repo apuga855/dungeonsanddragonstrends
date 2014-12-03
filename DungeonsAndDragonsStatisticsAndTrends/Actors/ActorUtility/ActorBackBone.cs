@@ -13,7 +13,10 @@ namespace Actor
     /// </summary>
     public enum ActorLevel
     {
-        Level_LessThanOne,
+        Level_0,
+        Level_OneEigth,
+        Level_OneFourth,
+        Level_OneHalf,
         Level_1,
         Level_2,
         Level_3,
@@ -150,7 +153,11 @@ namespace Actor
         {
             switch (Level)
             {
-                case ActorLevel.Level_LessThanOne:
+                
+                case ActorLevel.Level_0:
+                case ActorLevel.Level_OneEigth:
+                case ActorLevel.Level_OneFourth:
+                case ActorLevel.Level_OneHalf:
                 case ActorLevel.Level_1:
                 case ActorLevel.Level_2:
                 case ActorLevel.Level_3:
